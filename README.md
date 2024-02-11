@@ -118,8 +118,16 @@ Această funcție gestionează logica de ghicire atunci când utilizatorul apas�
 def restartGame():
     global word, guessnum
     word = words.get_word()
-    guessnum = 1
-    # Restul codului...
+    guessnum = 0
+    # Clear any existing labels
+    for widget in root.winfo_children():
+        if isinstance(widget, Label):
+            widget.destroy()
+    # Clear the input field
+    wordInput.delete(0, END)
+    # Focus on the input field
+    wordInput.focus()
+
 ```
 Această funcție reia jocul obținând un nou cuvânt și resetând numărul de încercări.
 
