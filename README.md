@@ -1,12 +1,12 @@
-### words.py Script
+Scriptul words.py
 
-#### Importing Libraries
+#### Importarea Bibliotecilor
 ```python
 import random
 ```
-Here we import the `random` module to generate random numbers for selecting a word from the list.
+Aici importăm modulul random pentru a genera numere aleatoare pentru selectarea unui cuvânt din lista.
 
-#### List of Words
+#### Listă de Cuvinte
 ```python
 words = """a
 ability
@@ -19,19 +19,19 @@ account
 across
 act
 action
-# ... More words ...
+# ... Mai multe cuvinte ...
 your
 yourself"""
 ```
-A long string containing a list of words, each separated by a newline character.
+Un șir lung conținând o listă de cuvinte, fiecare separate prin un caracter de linie nouă.
 
-#### Splitting Words
+#### Divizarea Cuvintelor
 ```python
 wordsList = words.split('\n')
 ```
-We split the long string into a list of words using the newline character as a separator.
+Divizăm șirul lung într-o listă de cuvinte folosind caracterul de linie nouă ca separator.
 
-#### Filtering Words
+#### Filtrarea Cuvintelor
 ```python
 outputWordsList = []
 
@@ -39,65 +39,65 @@ for i in range(len(wordsList) - 1):
     selected = wordsList[i]
     
     if "".join(dict.fromkeys(selected)) == selected and len(selected) == 5:
-        # Check if there are any repeating letters and if the length of the word is 5
+        # Verificăm dacă există litere repetate și dacă lungimea cuvântului este de 5 caractere
         
         outputWordsList.append(selected)
 ```
-We iterate through each word in the list, checking if it has repeating letters and if its length is 5. If so, we add it to the `outputWordsList`.
+Iterăm prin fiecare cuvânt din listă, verificând dacă are litere repetate și dacă lungimea sa este de 5 caractere. În caz afirmativ, îl adăugăm la outputWordsList.
 
-#### Function to Get a Word
+#### Funcția pentru Obținerea unui Cuvânt
 ```python
 def get_word():
     return random.choice(outputWordsList)
 ```
-This function returns a random word from the filtered list of words.
+Această funcție returnează un cuvânt aleatoriu din lista filtrată de cuvinte.
 
-### main.py Script
+Scriptul main.py
 
-#### Importing Libraries
+#### Importarea Bibliotecilor
 ```python
 from tkinter import messagebox
 from tkinter import *
 import words
 ```
-We import the necessary modules from the tkinter library for creating the GUI, and we import the `words` module to get a random word for the game.
+Importăm modulele necesare din biblioteca tkinter pentru crearea interfeței grafice, iar modulele words pentru a obține un cuvânt aleatoriu pentru joc.
 
-#### Initializing Game Variables
+#### Inițializarea Variabilelor Jocului
 ```python
 word = words.get_word()
 guessnum = 1
 ```
-We initialize the `word` variable by getting a random word using the `get_word()` function from the `words` module. `guessnum` keeps track of the number of guesses.
+Inițializăm variabila word prin obținerea unui cuvânt aleatoriu folosind funcția get_word() din modulul words. guessnum ține evidența numărului de încercări.
 
-#### Creating the GUI Window
+#### Crearea Ferestrei GUI
 ```python
 root = Tk()
 root.config(bg=black)
 root.title("Wordle")
 ```
-We create the main tkinter window with a black background and set its title to "Wordle".
+Creăm fereastra principală tkinter cu un fundal negru și îi setăm titlul la "Wordle".
 
-#### Function to Handle Guessing Logic
+#### Funcția pentru Gestionarea Logicii de Ghicire
 ```python
 def getGuess():
     global word, guessnum
     guess = wordInput.get().lower()
     guessnum += 1
-    # Rest of the code...
+    # Restul codului...
 ```
-This function handles the guessing logic when the user clicks the "Guess" button.
+Această funcție gestionează logica de ghicire atunci când utilizatorul apasă butonul "Guess".
 
-#### Function to Restart the Game
+#### Funcția pentru Restartarea Jocului
 ```python
 def restartGame():
     global word, guessnum
     word = words.get_word()
     guessnum = 1
-    # Rest of the code...
+    # Restul codului...
 ```
-This function restarts the game by getting a new word and resetting the guess count.
+Această funcție reia jocul obținând un nou cuvânt și resetând numărul de încercări.
 
-#### Creating GUI Elements
+#### Crearea Elementelor GUI
 ```python
 wordInput = Entry(root, font=("Helvetica", 16), bg=black, fg=white, insertbackground=white)
 wordInput.grid(row=999, column=0, padx=10, pady=10, columnspan=3, sticky="we")
@@ -108,10 +108,10 @@ wordGuessButton.grid(row=999, column=3, columnspan=2, padx=5, pady=10, sticky="w
 restartButton = Button(root, text="Restart", command=restartGame, bg=black, fg=white, font=("Helvetica", 14))
 restartButton.grid(row=1000, column=0, columnspan=5, padx=5, pady=(0, 10), sticky="we")
 ```
-We create the GUI elements such as the input field, guess button, and restart button, and place them in the tkinter window.
+Creăm elementele GUI, cum ar fi câmpul de introducere, butonul de ghicit și butonul de repornire, și le plasăm în fereastra tkinter.
 
-#### Running the Application
+#### Rularea Aplicației
 ```python
 root.mainloop()
 ```
-This starts the main event loop of the tkinter application, which listens for events such as button clicks and updates the GUI accordingly.
+Aceasta pornește bucla principală de evenimente a aplicației tkinter, care ascultă evenimente precum clicurile pe butoane și actualizează interfața grafică în consecință.
