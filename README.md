@@ -83,7 +83,33 @@ def getGuess():
     global word, guessnum
     guess = wordInput.get().lower()
     guessnum += 1
-    # Restul codului...
+   
+    # Clear the input field
+    wordInput.delete(0, END)
+   
+    # Focus on the input field to make the insertion cursor visible
+    wordInput.focus()
+   
+    # Set the insertion cursor position to the beginning of the input field
+    wordInput.icursor(0)
+   
+    if guessnum <= 5:
+        if len(guess) == 5:
+            if word.lower() == guess.lower(): # Correct guess
+                messagebox.showinfo("Correct!", f"Congratulations! The word was {word.title()}")
+            else:             # Incorrect guess
+                for i, letter in enumerate(guess):
+                    label = Label(root, text=letter.upper(), bg=black, fg=white, font=("Helvetica", 16, "bold"), width=5, height=2, bd=0, highlightthickness=2, relief="solid", highlightbackground="gray", padx=5, pady=5)
+                    label.grid(row=guessnum, column=i, padx=5, pady=5)
+                   
+                    if letter == word[i]: # Right letter in right place
+                        label.config(bg=green, fg=black)
+                    elif letter in word:   # Right letter in wrong place
+                        label.config(bg=yellow, fg=black)
+        else:
+            messagebox.showerror("Invalid Guess", "Please enter 5 characters for your guess")
+    else:
+        messagebox.showerror("Game Over", f"Game over! The word was {word.title()}").
 ```
 Această funcție gestionează logica de ghicire atunci când utilizatorul apasă butonul "Guess".
 
